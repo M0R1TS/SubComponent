@@ -1,0 +1,21 @@
+package ru.devsokovix.subcomponent
+
+import dagger.Binds
+import dagger.Module
+import dagger.Provides
+
+@Module
+interface Screen1Module {
+
+    @ScreenScope
+    @Binds
+    fun bindScreen1Presenter(p: Screen1Presenter) : BasePresenter
+
+    @Module companion object{
+        @ScreenScope
+        @Provides
+        fun screen1Presenter(accountsInfo: Array<AccountInfo>) : AccountInfo {
+            return accountsInfo.random()
+        }
+    }
+}
